@@ -1,6 +1,6 @@
 """
 app.py — Main entry point for HealthAI
- A Generative AI-based healthcare application powered by OpenAI.
+A Generative AI-based healthcare application powered by Google Gemini.
 """
 import os
 import streamlit as st
@@ -15,7 +15,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
-        "About": "HealthAI: An ethical Generative AI healthcare assistant powered by OpenAI.",
+        "About": "HealthAI: An ethical Generative AI healthcare assistant powered by Google Gemini.",
     },
 )
 
@@ -241,7 +241,7 @@ with st.sidebar:
             HealthAI
         </div>
         <div style='font-size: 0.75rem; color: rgba(180,210,235,0.5); letter-spacing: 1px; text-transform: uppercase;'>
-            Powered by OpenAI
+            Powered by Gemini
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -263,22 +263,22 @@ with st.sidebar:
     # API Key configuration
     st.markdown("### 🔑 API Configuration")
     api_key_input = st.text_input(
-        "OpenAI API Key",
+        "Gemini API Key",
         type="password",
-        placeholder="sk-…",
-        help="Create an API key at: https://platform.openai.com/api-keys",
-        value=os.getenv("OPENAI_API_KEY", ""),
+        placeholder="AIza…",
+        help="Get your free key at: https://aistudio.google.com/app/apikey",
+        value=os.getenv("GEMINI_API_KEY", ""),
     )
-    if api_key_input and api_key_input != "your_openai_api_key_here":
-        os.environ["OPENAI_API_KEY"] = api_key_input
+    if api_key_input and api_key_input != "your_gemini_api_key_here":
+        os.environ["GEMINI_API_KEY"] = api_key_input
         st.success("✅ API key set for this session")
-    elif not os.getenv("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY") == "your_openai_api_key_here":
-        st.warning("⚠️ Add your OpenAI API key to use AI features")
+    elif not os.getenv("GEMINI_API_KEY") or os.getenv("GEMINI_API_KEY") == "your_gemini_api_key_here":
+        st.warning("⚠️ Add your Gemini API key to use AI features")
 
     st.divider()
     st.markdown("""
     <div style='font-size: 0.75rem; color: rgba(180,210,235,0.4); text-align: center; line-height: 1.6;'>
-        <span class='pulse-dot'></span>OpenAI GPT-4o mini<br>
+        <span class='pulse-dot'></span>Gemini 2.0 Flash<br>
         Built with Streamlit & Python<br><br>
         ⚠️ For informational use only.<br>Not a substitute for medical advice.
     </div>
@@ -287,7 +287,7 @@ with st.sidebar:
 # ─── Hero Section ────────────────────────────────────────────────────────────
 st.markdown("""
 <div class='hero-container'>
-    <div class='hero-badge'>✦ Generative AI · Healthcare · OpenAI</div>
+    <div class='hero-badge'>✦ Generative AI · Healthcare · Gemini 2.0</div>
     <h1 class='hero-title'>AI-Powered Healthcare<br>Made Human-Centred</h1>
     <p class='hero-subtitle'>
         Transform complex medical information into clear, actionable insights.
@@ -305,8 +305,8 @@ st.markdown("""
         <div class='stat-label'>AI Modules</div>
     </div>
     <div class='stat-box'>
-        <div class='stat-number'>OpenAI</div>
-        <div class='stat-label'>GPT-4o mini</div>
+        <div class='stat-number'>Gemini</div>
+        <div class='stat-label'>2.0 Flash</div>
     </div>
     <div class='stat-box'>
         <div class='stat-number'>0</div>
@@ -349,7 +349,7 @@ st.markdown("""
     <div class='feature-card'>
         <span class='feature-icon'>🖼️</span>
         <div class='feature-title'>Image Analyser</div>
-        <div class='feature-desc'>Upload X-rays, skin photos, MRI scans or other medical images for structured visual analysis using OpenAI's multimodal AI.</div>
+        <div class='feature-desc'>Upload X-rays, skin photos, MRI scans or other medical images for structured visual analysis using Gemini's multimodal AI.</div>
     </div>
     <div class='feature-card'>
         <span class='feature-icon'>💊</span>
@@ -389,15 +389,15 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ─── API Key Check Banner ─────────────────────────────────────────────────────
-api_key = os.getenv("OPENAI_API_KEY", "")
-if not api_key or api_key == "your_openai_api_key_here":
+api_key = os.getenv("GEMINI_API_KEY", "")
+if not api_key or api_key == "your_gemini_api_key_here":
     st.markdown("""
     <div class='api-config-box'>
-        <b>🔑 Getting Started — Set Your OpenAI API Key</b><br><br>
-        To use any AI feature, enter your <b>OpenAI API key</b> in the sidebar.<br><br>
+        <b>🔑 Getting Started — Set Your Gemini API Key</b><br><br>
+        To use any AI feature, enter your <b>Gemini API key</b> in the sidebar.<br><br>
         <ol style='color: rgba(220,200,180,0.85); margin: 0; padding-left: 1.2rem;'>
-            <li>Visit <a href='https://platform.openai.com/api-keys' target='_blank' style='color: #64c8ff;'>platform.openai.com/api-keys</a></li>
-            <li>Sign in to your OpenAI account and create an API key</li>
+            <li>Visit <a href='https://aistudio.google.com/app/apikey' target='_blank' style='color: #64c8ff;'>aistudio.google.com/app/apikey</a></li>
+            <li>Sign in with your Google account and create a free API key</li>
             <li>Paste the key in the <b>API Configuration</b> section in the sidebar</li>
             <li>Navigate to any feature page and start exploring!</li>
         </ol>

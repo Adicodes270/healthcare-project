@@ -1,6 +1,6 @@
 """
 utils/pdf_reader.py
-Robust PDF text extraction with multiple strategies and OpenAI vision fallback for scanned PDFs.
+Robust PDF text extraction with multiple strategies and Gemini Vision fallback for scanned PDFs.
 """
 import io
 from pypdf import PdfReader
@@ -89,7 +89,7 @@ def extract_text_from_pdf(uploaded_file) -> dict:
 
 def pdf_bytes_to_images(pdf_bytes: bytes) -> list:
     """
-    Convert PDF pages to PIL Images for OpenAI vision analysis.
+    Convert PDF pages to PIL Images for Gemini Vision analysis.
     Returns list of PIL Image objects (one per page, up to 5 pages).
     Requires: pip install pypdfium2
     """

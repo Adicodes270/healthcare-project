@@ -1,10 +1,10 @@
 """
 pages/1_📋_Report_Summariser.py
 Plain-language summarisation of medical reports.
-Supports: PDF upload (text-based & scanned), direct text paste, and OpenAI vision OCR for image-only PDFs.
+Supports: PDF upload (text-based & scanned), direct text paste, and Gemini Vision OCR for image-only PDFs.
 """
 import streamlit as st
-from utils.openai_client import get_text_model, get_vision_model, MEDICAL_SAFETY_DISCLAIMER
+from utils.gemini_client import get_text_model, get_vision_model, MEDICAL_SAFETY_DISCLAIMER
 from utils.pdf_reader import extract_text_from_pdf
 
 st.set_page_config(page_title="Medical Report Summariser | HealthAI", page_icon="📋", layout="wide")
@@ -91,7 +91,7 @@ with col_info:
     <span class='metric-pill'>📄 PDF Upload</span> — text-based PDFs<br>
     <span class='metric-pill'>✏️ Paste Text</span> — copy-paste any report text<br>
     <span class='metric-pill'>🔬 Vision OCR</span> — scanned / image PDFs<br><br>
-    <small>Nothing is stored. All processing is in-memory via the OpenAI API.</small>
+    <small>Nothing is stored. All processing is in-memory via the Gemini API.</small>
     </div>
     """, unsafe_allow_html=True)
 
@@ -172,7 +172,7 @@ with tab_text:
 
 # ── Tab 3: Vision / Scanned PDF ───────────────────────────────────────────────
 with tab_vision:
-    st.markdown("<div class='tab-desc'>Upload a <b>scanned PDF or medical image</b> (JPG/PNG). OpenAI's vision model will read the content visually and generate a summary — no selectable text required.</div>", unsafe_allow_html=True)
+    st.markdown("<div class='tab-desc'>Upload a <b>scanned PDF or medical image</b> (JPG/PNG). Gemini's Vision AI will read the content visually and generate a summary — no selectable text required.</div>", unsafe_allow_html=True)
 
     vision_upload = st.file_uploader(
         "Upload scanned report (PDF, JPG, PNG)",
@@ -269,7 +269,7 @@ if report_text or vision_images:
                 focus_str=focus_str,
                 content=content_snippet,
             )
-            with st.spinner(f"🤖 OpenAI is analysing your {input_source}…"):
+            with st.spinner(f"🤖 Gemini is analysing your {input_source}…"):
                 try:
                     model = get_text_model()
                     response = model.generate_content(prompt)
@@ -287,7 +287,7 @@ if report_text or vision_images:
                         mime="text/plain",
                     )
                 except Exception as e:
-                    st.error(f"❌ OpenAI API error: {e}")
+                    st.error(f"❌ Gemini API error: {e}")
 
         # ── Vision path (scanned PDF / image) ────────────────────────────────
         elif vision_images:
@@ -321,10 +321,10 @@ Abnormal values or urgent findings (prefix each with ⚠️).
 
 Tone: Warm, clear, reassuring.
 """
-            with st.spinner("🔬 OpenAI vision is reading your scanned document…"):
+            with st.spinner("🔬 Gemini Vision is reading your scanned document…"):
                 try:
                     model = get_vision_model()
-                    # Pass all images with the prompt for multimodal analysis.
+                    # Pass all images + prompt to Gemini
                     content_parts = [vision_prompt] + vision_images
                     response = model.generate_content(content_parts)
                     summary = response.text
@@ -341,6 +341,6 @@ Tone: Warm, clear, reassuring.
                         mime="text/plain",
                     )
                 except Exception as e:
-                    st.error(f"❌ OpenAI vision error: {e}")
+                    st.error(f"❌ Gemini Vision error: {e}")
 else:
     st.info("👆 Choose an input method above: upload a PDF, paste text, or use Vision for scanned documents.")

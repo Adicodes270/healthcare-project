@@ -3,7 +3,7 @@ pages/2_💬_Health_QA_Chatbot.py
 Evidence-based health question-answering chatbot with chat history.
 """
 import streamlit as st
-from utils.openai_client import get_text_model, MEDICAL_SAFETY_DISCLAIMER
+from utils.gemini_client import get_text_model, MEDICAL_SAFETY_DISCLAIMER
 
 st.set_page_config(page_title="Health Q&A Chatbot | HealthAI", page_icon="💬", layout="wide")
 
@@ -46,7 +46,7 @@ st.markdown("""
 
 # ─── Header ───────────────────────────────────────────────────────────────────
 st.markdown("# 💬 Health Q&A Chatbot")
-st.markdown("Ask any **health-related question** and get clear, evidence-based answers powered by OpenAI.")
+st.markdown("Ask any **health-related question** and get clear, evidence-based answers powered by Gemini AI.")
 
 # ─── Sidebar Config ──────────────────────────────────────────────────────────
 with st.sidebar:
@@ -83,6 +83,8 @@ You must NEVER:
 # ─── Chat History ─────────────────────────────────────────────────────────────
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
+if "gemini_chat" not in st.session_state:
+    st.session_state.gemini_chat = None
 # Quick-start questions
 if not st.session_state.chat_history:
     st.markdown("#### 💡 Quick questions to get started:")

@@ -1,10 +1,10 @@
 """
 pages/4_🖼️_Image_Analyser.py
-Multimodal OpenAI vision analysis of medical images (X-rays, skin conditions, etc.)
+Multimodal Gemini vision analysis of medical images (X-rays, skin conditions, etc.)
 """
 import streamlit as st
 from PIL import Image
-from utils.openai_client import get_vision_model, MEDICAL_SAFETY_DISCLAIMER
+from utils.gemini_client import get_vision_model, MEDICAL_SAFETY_DISCLAIMER
 
 st.set_page_config(page_title="Medical Image Analyser | HealthAI", page_icon="🖼️", layout="wide")
 
@@ -35,7 +35,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown("# 🖼️ Medical Image Analyser")
-st.markdown("Upload a medical image for **AI-powered visual analysis** using OpenAI's multimodal capabilities.")
+st.markdown("Upload a medical image for **AI-powered visual analysis** using Gemini's multimodal capabilities.")
 
 st.warning("⚠️ This tool provides AI-generated observations only. It is **not a diagnostic tool** and must not replace professional radiological or clinical assessment.")
 
@@ -121,7 +121,7 @@ A 2–3 sentence clinical summary and recommendation for next steps (additional 
 Use clear, structured language. Flag uncertainty explicitly. Do not over-diagnose.
 """
 
-    with st.spinner("🤖 Analysing image with OpenAI vision…"):
+    with st.spinner("🤖 Analysing image with Gemini Vision…"):
         try:
             model = get_vision_model()
             image_pil = Image.open(uploaded_image)
