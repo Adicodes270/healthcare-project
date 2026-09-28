@@ -3,7 +3,7 @@ pages/5_💊_Medication_Info.py
 AI-powered medication information and drug interaction checker.
 """
 import streamlit as st
-from utils.gemini_client import get_text_model, MEDICAL_SAFETY_DISCLAIMER
+from utils.openai_client import get_text_model, MEDICAL_SAFETY_DISCLAIMER
 
 st.set_page_config(page_title="Medication Info | HealthAI", page_icon="💊", layout="wide")
 

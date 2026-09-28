@@ -1,6 +1,6 @@
 # HealthAI — Generative AI Healthcare Assistant
 
-A comprehensive, ethical AI-powered healthcare application built with **Python**, **Streamlit**, and **Google Gemini 2.0 Flash**.
+A comprehensive, ethical AI-powered healthcare application built with **Python**, **Streamlit**, and **OpenAI GPT-4o mini**.
 
 ---
 
@@ -11,7 +11,7 @@ A comprehensive, ethical AI-powered healthcare application built with **Python**
 | 📋 **Report Summariser** | Upload PDF medical reports → plain-English summary |
 | 💬 **Health Q&A Chatbot** | Evidence-based health Q&A with chat history |
 | 🔬 **Symptom Checker** | AI triage assessment with urgency classification |
-| 🖼️ **Image Analyser** | Gemini Vision analysis of X-rays, skin images, MRIs |
+| 🖼️ **Image Analyser** | OpenAI vision analysis of X-rays, skin images, MRIs |
 | 💊 **Medication Info** | Drug lookup + drug interaction checker |
 
 ---
@@ -31,14 +31,14 @@ venv\Scripts\activate      # Windows
 pip install -r requirements.txt
 ```
 
-### 4. Set your Gemini API key
+### 4. Set your OpenAI API key
 Edit the `.env` file:
 ```
-GEMINI_API_KEY=your_actual_key_here
+OPENAI_API_KEY=your_actual_key_here
 ```
 Or paste it directly in the **sidebar** when the app is running.
 
-> **Get a free key:** https://aistudio.google.com/app/apikey
+> **Create an API key:** https://platform.openai.com/api-keys. API usage may incur charges.
 
 ### 5. Run the app
 ```bash
@@ -65,7 +65,7 @@ Healthcare AI project/
 │   ├── 4_🖼️_Image_Analyser.py
 │   └── 5_💊_Medication_Info.py
 └── utils/
-    ├── gemini_client.py            # Gemini API configuration
+    ├── openai_client.py             # OpenAI API configuration
     └── pdf_reader.py               # PDF text extraction
 ```
 

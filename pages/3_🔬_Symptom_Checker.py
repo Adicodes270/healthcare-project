@@ -3,7 +3,7 @@ pages/3_🔬_Symptom_Checker.py
 AI-powered symptom checker and triage assistant.
 """
 import streamlit as st
-from utils.gemini_client import get_text_model, MEDICAL_SAFETY_DISCLAIMER
+from utils.openai_client import get_text_model, MEDICAL_SAFETY_DISCLAIMER
 
 st.set_page_config(page_title="Symptom Checker | HealthAI", page_icon="🔬", layout="wide")
 
